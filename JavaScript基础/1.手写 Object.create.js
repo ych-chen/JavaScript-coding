@@ -21,8 +21,10 @@ me.printIntroduction();
 // Expected output: "My name is Matthew. Am I human? true"
 
 */
-function create(obj){
-    function F() {}
-    F.prototype = obj;
-    return new  F()
+
+Object.prototype.myCreate = function(obj){
+  function F(){};
+  F.prototype = obj;
+  return new F();
 }
+
