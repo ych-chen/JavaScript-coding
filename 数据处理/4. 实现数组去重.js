@@ -20,6 +20,7 @@ function uniqueArray(array){
             res.push(array[i])
         }
     }
+    
     return res;
 }
 uniqueArray(array);
