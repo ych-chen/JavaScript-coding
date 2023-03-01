@@ -24,4 +24,3 @@ Array.prototype.myMap = function(fn, thisBinding){
     }
     return res;
 }
-
