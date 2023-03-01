@@ -20,8 +20,8 @@ let tree = {
   
 
 function treeToList(tree){
-    let res = []
-    
+    let res = [];
+
     function traverse(node, pid){
         res.push({ id: node.id , pid: pid});
         if(node.children){

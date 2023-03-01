@@ -43,7 +43,7 @@ myPromise.prototype.then = function(onFulfilled, onRejected){
 
     onFulfilled = typeof onFulfilled === "function" ? onFulfilled : (value) => value;
 
-    onRejected = typeof onRejected === "function" ? onRejected : (error) => {throw error};
+    onRejected  = typeof onRejected === "function" ? onRejected : (error) => {throw error};
 
     // 如果是等待状态，则将函数加入对应列表中
     if(this.state === "pending"){
