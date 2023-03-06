@@ -25,6 +25,5 @@ Array.prototype.myflat = function(depth = 1){
     }
 
     flatten(this, depth)
-    
     return res
 }
