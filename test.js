@@ -42,3 +42,25 @@ function bb(){
     console.log(`${a.length},${b.length}`)
 }
 bb()
+
+const res = /cc/y;
+res.test('ccwwcc');
+console.log(res.lastIndex)
+res.test('ccwwcc');
+console.log(res.lastIndex)
+
+var num = 117;
+function test1(){
+    console.log(this.num)
+}
+(function(){
+    'use strict';
+    test1();
+})()
+'use strict';
+function test2(){
+    console.log(this.num)
+}
+setTimeout(function(){
+    test2.call(this)
+},0)
