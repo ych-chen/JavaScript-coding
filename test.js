@@ -64,3 +64,7 @@ function test2(){
 setTimeout(function(){
     test2.call(this)
 },0)
+'qwe'.replace()
+
+let map = new Map();
+map.forEach((va))
