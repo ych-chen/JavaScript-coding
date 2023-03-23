@@ -33,3 +33,5 @@ function PromiseAll(promises){
         }
     })
 }
+
+Promise.resolve().then()

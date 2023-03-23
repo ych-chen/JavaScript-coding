@@ -27,3 +27,18 @@ Array.prototype.myflat = function(depth = 1){
     flatten(this, depth)
     return res
 }
+
+Array.prototype.myflat = function(depth = 1){
+    let res = [];
+    function flatten(arr, level){
+        for(let value of arr){
+            if(Array.isArray(value) && level > 0){
+                flatten(value, level - 1)
+            } else {
+                res.push(value)
+            }
+        }
+    }
+    flatten(this, depth);
+    return res;
+}
