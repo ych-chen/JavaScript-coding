@@ -1,9 +1,63 @@
 
 
-/* Promise 的作用是为了解决异步编程中的回调地狱问题，让代码更加简洁和可读。
+/* Promise 的作用是为了解决异步编程中的回调地狱问题，让代码更加简洁和可读。 */
 
- */
+const PENDING   = 'PENDING', FULFILLED = 'FULFILLED', REJECTED  = 'REJECTED';
 
+class MyPromise{
+    constructor(executor){
+        this.status = PENDING;
+        this.value  = undefined;
+        this.reason = undefined;
+        this.onFulfilledCallbacks = [];
+        this.onRejectedCallbacks = [];
+
+        const resolve = (value) => {
+            if(this.status === PENDING){
+                this.status = FULFILLED;
+                this.value  = value;
+
+                // 发布
+                this.onFulfilledCallbacks.forEach(fn => fn());
+            }
+        }
+
+        const reject = (reason) => {
+            if(this.status === PENDING){
+                this.status = REJECTED;
+                this.reason = reason;
+
+                this.onRejectedCallbacks.forEach(fn => fn());
+            }
+        }
+
+        try{
+            executor(resolve, reject);
+        } catch(error) {
+            reject(error);
+        }
+    }
+
+    then(onFulfilled, onRejected){
+        if(this.status === FULFILLED){
+            onFulfilled(this.value)
+        }
+
+        if(this.status === REJECTED){
+            onRejected(this.reason)
+        }
+
+        if(this.status === PENDING){
+            // 订阅的过程
+            this.onFulfilledCallbacks.push(() => {
+                onFulfilled(this.value)
+            })
+            this.onRejectedCallbacks.push(() => {
+                onRejected(this.reason)
+            })
+        }
+    }
+}
 
 function myPromise(executor){
 
